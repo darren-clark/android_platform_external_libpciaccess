@@ -46,7 +46,11 @@
 #include <errno.h>
 
 #if defined(__i386__) || defined(__x86_64__) || defined(__arm__)
+#ifndef ANDROID
 #include <sys/io.h>
+#else
+#include "io.h"
+#endif
 #else
 #define inb(x) -1
 #define inw(x) -1
@@ -57,7 +61,9 @@
 #define iopl(x) -1
 #endif
 
+#ifndef ANDROID
 #include "config.h"
+#endif
 
 #ifdef HAVE_MTRR
 #include <asm/mtrr.h>

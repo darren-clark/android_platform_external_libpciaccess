@@ -42,7 +42,11 @@
  * know of any OS we support where this isn't available in a sufficiently
  * new version, so warn unconditionally.
  */
+#ifdef ANDROID
+#include <fcntl.h>
+#else
 #include <sys/fcntl.h>
+#endif
 
 #ifndef O_CLOEXEC
 #warning O_CLOEXEC not available, please upgrade.
